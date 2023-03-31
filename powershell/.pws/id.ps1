@@ -22,6 +22,8 @@ Import-Module PSReadLine
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
 Set-PSReadLineOption -PredictionViewStyle InlineView
 
+Import-Module posh-git
+
 
 # Utilities
 function where ($command) {
