@@ -1,0 +1,14 @@
+# Core CLI tools
+git
+stow
+lazygit
+neovim
+ripgrep
+fd
+fzf
+tree
+curl
+wget
+
+# Productivity & System Tools
+vlc

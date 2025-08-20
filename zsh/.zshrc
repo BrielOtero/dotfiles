@@ -41,6 +41,12 @@ HYPHEN_INSENSITIVE="true"
 plugins=(git)
 
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
+# ============================================================================ #
+#                                 CLI TOOLS                                    #
+# ============================================================================ #
+
+# Load zoxide for smart directory navigation (z)
+eval "$(zoxide init zsh)"
 
 # ============================================================================ #
 #                                 USER ALIASES                                 #

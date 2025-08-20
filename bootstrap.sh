@@ -29,7 +29,7 @@ SCRIPTS_DIR="$DOTFILES_DIR/shell/scripts"
 if [[ "$(uname -s)" == "Linux" ]]; then
     sudo apt-get update && sudo apt-get upgrade -y
     sudo apt install -y libz-dev libssl-dev liblzma-dev libcurl4-gnutls-dev libexpat1-dev gettext cmake gcc bc
-    sudo apt-get install -y git zsh
+    sudo apt-get install -y git zsh stow
 fi
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -72,7 +72,8 @@ source "$FUNCTIONS_DIR/misc.sh"
 ################################################################################
 if [[ "$(uname -s)" == "Linux" ]]; then
     sudo apt-get update && sudo apt-get upgrade -y
-    sudo apt-get install -y git zsh stow
+    xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/apt/Aptfile" | grep -vE '^\s*$') \
+      sudo apt install -y
 fi
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
