@@ -1,16 +1,58 @@
-tap "homebrew/cask"
-brew "git"
-brew "gh"
-brew "stow"
-brew "lazygit"
-brew "go"
-brew "pyenv"
-brew "neovim"
-brew "ripgrep"
-brew "fd"
-brew "fzf"
-brew "kubectl"
-brew "kubectx"
-brew "k9s"
-cask "firefox"
-cask "alacritty"
+# Core CLI tools
+brew "git"             # Essential version control system
+brew "gh"              # GitHub CLI for managing repos/issues/PRs
+brew "stow"            # Manage dotfiles with symlinks
+brew "lazygit"         # TUI for Git, very useful for quick commits/rebases
+brew "neovim"          # Modern Vim-based text editor
+brew "ripgrep"         # Super fast text searching (better grep)
+brew "fd"              # Fast, user-friendly alternative to find
+brew "fzf"             # Fuzzy finder, integrates well with shell tools
+brew "stow"            # Manage dotfiles with symlinks
+
+# Kubernetes tools
+#brew "kubectl"        # CLI for Kubernetes
+#brew "kubectx"        # Switch between Kubernetes contexts/namespaces easily
+#brew "k9s"            # TUI for managing Kubernetes clusters
+
+# Cloud & Development CLI
+brew "awscli"          # AWS command-line interface
+brew "git-flow"        # Adds Git branching workflow commands
+brew "git-lfs"         # Handles large files in Git repos
+brew "gnu-tar"         # GNU tar (better compatibility than BSD tar)
+brew "pyenv"           # Python version manager
+brew 'nvenv'           # Node.js version manager
+
+# Productivity & System Tools
+cask "alt-tab"         # Windows-style Alt-Tab for macOS
+cask "breaktimer"      # Break reminder for healthy work habits
+cask "docker-desktop"  # Docker containers on macOS
+cask "ghostty@tip"     # GPU-accelerated terminal emulator
+cask "gitify"          # GitHub/GitLab notifications in menu bar
+cask "google-drive"    # Google Drive client
+cask "hiddenbar"       # Hide/show menu bar icons
+cask "mos"             # Smooth scroll and mouse tweaks
+cask "obsidian"        # Knowledge management / note-taking app
+cask "pearcleaner"     # Uninstall and clean leftover app files
+cask "stats"           # System monitoring in menu bar
+cask "1password"       # Password manager
+cask "vlc"             # Media player
+
+# Communication
+cask "discord"         # Chat & community platform
+
+# Browsers
+cask "firefox"         # Mozilla Firefox
+cask "brave-browser"   # Privacy-focused Chromium browser
+
+# IDEs & Editors
+cask "visual-studio-code"   # VS Code editor
+cask "intellij-idea-ce"     # IntelliJ IDEA (Community Edition)
+cask "android-studio"       # Android development IDE
+
+# Database Tools
+cask "mysqlworkbench"       # MySQL client and admin tool
+cask "dbeaver-community"    # Universal DB client
+cask "bruno"                # API client (Postman alternative)
+
+# Office & Media
+cask "libreoffice"     # Free MS Office alternative
