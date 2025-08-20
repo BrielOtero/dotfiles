@@ -20,7 +20,7 @@ brew "git-flow"        # Adds Git branching workflow commands
 brew "git-lfs"         # Handles large files in Git repos
 brew "gnu-tar"         # GNU tar (better compatibility than BSD tar)
 brew "pyenv"           # Python version manager
-brew 'nvenv'           # Node.js version manager
+brew 'nvm'             # Node.js version manager
 
 # Productivity & System Tools
 cask "alt-tab"         # Windows-style Alt-Tab for macOS
