@@ -5,7 +5,7 @@ set -eu
 if ! command -v $HOME/.pyenv/bin/pyenv &> /dev/null; then
     git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 
-    py_versions=("3.8" "3.10.10")
+    py_versions=("3.12" "3.13.6")
     for py_version in "${py_versions[@]}"; do
         $HOME/.pyenv/bin/pyenv install "$py_version"
     done

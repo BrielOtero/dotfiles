@@ -90,16 +90,16 @@ run_script "$SCRIPTS_DIR/zsh.sh"
 # Development ecosystem
 ################################################################################
 run_script "$SCRIPTS_DIR/python.sh"
+run_script "$SCRIPTS_DIR/npm.sh"
 # Call ./go/setup.sh
 # Call ./rust/setup.sh
-# Call ./npm/setup.sh
 # Call ./dotnet/setup.sh
 
 
 ################################################################################
 # Symbolic linking for configuration files 
 ################################################################################
-stow --dir=$HOME/.dotfiles/ --target=$HOME --adopt zsh tmux
+stow --dir=$HOME/.dotfiles/ --target=$HOME --adopt zsh
 cd $DOTFILES_DIR
 git restore .
 
