@@ -11,6 +11,8 @@ brew "zoxide"          # Smart directory navigation tool
 brew "tree"            # Directory tree viewer
 brew "stow"            # Manage dotfiles with symlinks
 
+brew "karabiner-elements" # Keybinder for macOs
+
 # Kubernetes tools
 #brew "kubectl"        # CLI for Kubernetes
 #brew "kubectx"        # Switch between Kubernetes contexts/namespaces easily

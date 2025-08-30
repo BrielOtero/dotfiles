@@ -100,7 +100,8 @@ run_script "$SCRIPTS_DIR/npm.sh"
 ################################################################################
 # Symbolic linking for configuration files 
 ################################################################################
-stow .
+stow -d ~/.dotfiles -t ~ zshrc
+stow -d ~/.dotfiles -t ~/.config config
 cd $DOTFILES_DIR
 git restore .
 
