@@ -1,0 +1,7 @@
+--target=~/.config
+--ignore=.stowrc
+--ignore=bootstrap.sh
+--ignore=apt/*
+--ignore=brew/*
+--ignore=powershell/*
+--ignore=shell/*

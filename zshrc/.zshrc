@@ -52,3 +52,7 @@ eval "$(zoxide init zsh)"
 #                                 USER ALIASES                                 #
 # ============================================================================ #
 alias reload='source ~/.zshrc'
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/id/.lmstudio/bin"
+# End of LM Studio CLI section
+

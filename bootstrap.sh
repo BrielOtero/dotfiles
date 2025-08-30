@@ -100,7 +100,7 @@ run_script "$SCRIPTS_DIR/npm.sh"
 ################################################################################
 # Symbolic linking for configuration files 
 ################################################################################
-stow --dir=$HOME/.dotfiles/ --target=$HOME --adopt zsh
+stow .
 cd $DOTFILES_DIR
 git restore .
 
