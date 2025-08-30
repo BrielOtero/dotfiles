@@ -10,6 +10,7 @@ brew "fzf"             # Fuzzy finder, integrates well with shell tools
 brew "zoxide"          # Smart directory navigation tool
 brew "tree"            # Directory tree viewer
 brew "stow"            # Manage dotfiles with symlinks
+brew "eza"             # Modern, maintained replacement for ls
 
 brew "karabiner-elements" # Keybinder for macOS
 
