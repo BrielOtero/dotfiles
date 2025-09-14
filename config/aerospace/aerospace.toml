@@ -56,6 +56,8 @@ outer.top = 0
 outer.right = 0
 
 # For list apps use command: aerospace list-apps
+
+# Move to another workspace
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run = "move-node-to-workspace 1"
@@ -71,6 +73,16 @@ run = "move-node-to-workspace 3"
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = "move-node-to-workspace 5"
+
+# Floating
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.docker.docker'
+run = 'layout floating'
+
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
