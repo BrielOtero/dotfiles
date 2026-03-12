@@ -31,6 +31,15 @@ install_helium() {
     fi
 }
 
+install_ghostty() {
+    if is_fedora; then
+        sudo dnf copr enable scottames/ghostty
+        sudo dnf install -y ghostty
+    else
+        echo "Ghostty via COPR is only available on Fedora"
+    fi
+}
+
 
 install_1password() {
     if is_fedora; then
@@ -122,6 +131,7 @@ install_linux_apps() {
     install_flatpak_apps
     install_zen_browser
     install_helium
+    install_ghostty
     install_1password
     install_vscode
     install_vicinae
