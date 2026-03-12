@@ -12,6 +12,26 @@ install_flatpak_apps() {
         flatpak install -y flathub
 }
 
+
+install_zen_browser() {
+    if is_fedora; then
+        sudo dnf copr enable sneexy/zen-browser
+        sudo dnf install -y zen-browser
+    else
+        echo "Zen Browser is only supported on Fedora/RHEL for now"
+    fi
+}
+
+install_helium() {
+    if is_fedora; then
+        sudo dnf copr enable jhuang6451/helium-browser
+        sudo dnf install -y helium-browser
+    else
+        sudo apt-get install -y helium
+    fi
+}
+
+
 install_1password() {
     if is_fedora; then
         sudo dnf install -y 1password 1password-cli
@@ -27,35 +47,21 @@ install_1password() {
     sudo touch /etc/1password/custom_allowed_browsers
     
     # Add Zen Browser if installed
-    if command -v zen-bin &> /dev/null; then
+    if command -v zen-browser &> /dev/null; then
+        echo "zen-browser" | sudo tee -a /etc/1password/custom_allowed_browsers
+    elif command -v zen-bin &> /dev/null; then
         echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers
     fi
     
     # Add Helium Browser if installed
-    if command -v helium &> /dev/null; then
+    if command -v helium-browser &> /dev/null; then
+        echo "helium-browser" | sudo tee -a /etc/1password/custom_allowed_browsers
+    elif command -v helium &> /dev/null; then
         echo "helium" | sudo tee -a /etc/1password/custom_allowed_browsers
     fi
     
     sudo chown root:root /etc/1password/custom_allowed_browsers
     sudo chmod 755 /etc/1password/custom_allowed_browsers
-}
-
-install_zen_browser() {
-    if is_fedora; then
-        sudo dnf config-manager --add-repo https://dl.zen-browser.dev/rpm/zen-browser.repo
-        sudo dnf install -y zen-browser
-    else
-        echo "Zen Browser is only supported on Fedora/RHEL for now"
-    fi
-}
-
-install_helium() {
-    if is_fedora; then
-        # Helium not in Fedora repos, install via direct download or skip
-        echo "Helium Browser not available in Fedora repos. Skipping."
-    else
-        sudo apt-get install -y helium
-    fi
 }
 
 install_vscode() {
@@ -72,12 +78,22 @@ install_vscode() {
     fi
 }
 
+install_vicinae() {
+    if is_fedora; then
+        sudo dnf copr enable quadratech188/vicinae
+        sudo dnf install -y vicinae
+    else
+        echo "Vicinae is only available on Fedora via COPR"
+    fi
+}
+
 install_linux_apps() {
     install_flatpak_apps
-    install_1password
     install_zen_browser
     install_helium
+    install_1password
     install_vscode
+    install_vicinae
 
     echo ""
     echo "=============================================="

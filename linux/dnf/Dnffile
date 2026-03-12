@@ -21,3 +21,5 @@ awscli
 git-lfs
 tar
 git-flow
+docker
+docker-compose
