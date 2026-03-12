@@ -116,19 +116,20 @@ install_nvidia() {
     sudo dnf install -y kernel-devel-matched kernel-headers
 
     # Add NVIDIA network repository
-    fedver=$(grep -oP '(?<=VERSION_ID=)\d+' /etc/fedora-release)
-
-    case "$fedver" in
-      40) repodir=fedora40 ;;
-      41) repodir=fedora41 ;;
-      42) repodir=fedora42 ;;
-      # add more as Nvidia supports them
-      *) echo "No official NVIDIA CUDA repo for Fedora $fedver; using RPM Fusion instead"
-         return ;;
-    esac
-
-    sudo dnf config-manager --add-repo \
-      https://developer.download.nvidia.com/compute/cuda/repos/$repodir/x86_64/cuda-$repodir.repo
+    fedver=$(grep -oP '(?<=VERSION_ID=)\d+' /etc/os-release)
+    repodir="fedora${fedver}"
+    repourl="https://developer.download.nvidia.com/compute/cuda/repos/$repodir/x86_64/cuda-$repodir.repo"
+ 
+    # Check if NVIDIA has published a repo for this Fedora version
+    if ! curl --silent --head --fail "$repourl" &> /dev/null; then
+        echo "No official NVIDIA CUDA repo found for Fedora $fedver (tried $repourl). Skipping."
+        return
+    fi
+ 
+    if ! sudo dnf config-manager --add-repo "$repourl"; then
+        echo "Failed to add NVIDIA CUDA repo. Skipping NVIDIA driver installation."
+        return
+    fi
 
     sudo dnf clean expire-cache
 
