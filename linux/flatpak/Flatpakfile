@@ -1,22 +1,22 @@
 # GUI Applications via Flatpak
 
 # Communication
-flathub com.discord.Discord
+com.discord.Discord
 
 # Productivity & System Tools
-flathub com.obsproject.Obsidian
-flathub org.videolan.VLC
-flathub io.missioncenter.MissionCenter
-flathub io.github/manosim.Gitify
+com.obsproject.Obsidian
+org.videolan.VLC
+io.missioncenter.MissionCenter
+io.github.manosim.Gitify
 
 
 # Database Tools
-flathub io.dbeaver.DBeaver
-flathub com.brunobrero.Bruno
+io.dbeaver.DBeaver
+com.brunobrero.Bruno
 
 # Office & Media
-flathub org.libreoffice.LibreOffice
-flathub com.spotify.Client
+org.libreoffice.LibreOffice
+com.spotify.Client
 
 # Terminal
-flathub com.mitchellh.ghostty
+com.mitchellh.ghostty

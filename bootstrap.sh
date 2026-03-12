@@ -37,8 +37,10 @@ if is_linux; then
     install_linux_apps
 fi
 
+# Install shell
+run_script "$SCRIPTS_DIR/shell.sh"
+
 # Terminal and development tools
-run_script "$SCRIPTS_DIR/zsh.sh"
 run_script "$SCRIPTS_DIR/python.sh"
 run_script "$SCRIPTS_DIR/npm.sh"
 

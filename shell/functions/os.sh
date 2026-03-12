@@ -34,8 +34,8 @@ install_packages() {
             sudo dnf update -y
             
             # Enable COPR repos for packages not in default repos
-            sudo dnf copr enable -y delen/lazygit 2>/dev/null || true
-            sudo dnf copr enable -y dturner/eza 2>/dev/null || true
+            sudo dnf copr enable -y @delen/lazygit 2>/dev/null || true
+            sudo dnf copr enable -y @dturner/eza 2>/dev/null || true
             
             # Install packages from Dnffile
             xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/dnf/Dnffile" | grep -vE '^\s*$') \
@@ -64,25 +64,21 @@ install_deps() {
     case "$os" in
         fedora)
             sudo dnf update -y
-            sudo dnf install -y gcc gcc-c++ make git zsh stow flatpak curl
-            sudo dnf copr enable -y atim/starship 2>/dev/null || true
-            sudo dnf install -y starship
+            sudo dnf install -y gcc gcc-c++ make git stow flatpak curl
             ;;
         debian)
             sudo apt-get update && sudo apt-get upgrade -y
             sudo apt install -y libz-dev libssl-dev liblzma-dev libcurl4-gnutls-dev libexpat1-dev gettext cmake gcc bc flatpak
-            sudo apt-get install -y git zsh stow
-            curl -sS https://starship.rs/install.sh | sh
+            sudo apt-get install -y git stow
             ;;
         macos)
             if ! command -v brew &> /dev/null; then
                 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
                 brew update && brew upgrade
             fi
-            for pkg in git zsh stow; do
+            for pkg in git stow; do
                 command -v $pkg &> /dev/null || brew install $pkg
             done
-            brew install starship
             ;;
     esac
 }
