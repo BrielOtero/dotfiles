@@ -3,13 +3,9 @@
 # Communication
 flathub com.discord.Discord
 
-# Browsers
-flathub com.brave.Browser
-
 # Productivity & System Tools
 flathub com.obsproject.Obsidian
 flathub org.videolan.VLC
-flathub com.google.GoogleDrive
 flathub io.missioncenter.MissionCenter
 
 

@@ -24,7 +24,7 @@ is_macos() {
 }
 
 is_fedora() {
-    is_linux && [[ -f /etc/fedora-release ]] || command -v dnf &> /dev/null
+    is_linux && ([[ -f /etc/fedora-release ]] || command -v dnf &> /dev/null)
 }
 
 install_packages() {

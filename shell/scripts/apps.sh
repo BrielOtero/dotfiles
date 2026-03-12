@@ -51,7 +51,8 @@ install_zen_browser() {
 
 install_helium() {
     if is_fedora; then
-        sudo dnf install -y helium
+        # Helium not in Fedora repos, install via direct download or skip
+        echo "Helium Browser not available in Fedora repos. Skipping."
     else
         sudo apt-get install -y helium
     fi
