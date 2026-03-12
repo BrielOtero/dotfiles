@@ -15,7 +15,7 @@ install_flatpak_apps() {
 
 install_zen_browser() {
     if is_fedora; then
-        sudo dnf copr enable firminunderscore/zen-browser
+        sudo dnf copr enable -y firminunderscore/zen-browser
         sudo dnf install -y zen-browser
     else
         echo "Zen Browser is only supported on Fedora/RHEL for now"
@@ -24,7 +24,7 @@ install_zen_browser() {
 
 install_helium() {
     if is_fedora; then
-        sudo dnf copr enable jhuang6451/helium-browser
+        sudo dnf copr enable -y jhuang6451/helium-browser
         sudo dnf install -y helium-browser
     else
         sudo apt-get install -y helium
@@ -33,7 +33,7 @@ install_helium() {
 
 install_ghostty() {
     if is_fedora; then
-        sudo dnf copr enable scottames/ghostty
+        sudo dnf copr enable -y scottames/ghostty
         sudo dnf install -y ghostty
     else
         echo "Ghostty via COPR is only available on Fedora"
@@ -89,7 +89,7 @@ install_vscode() {
 
 install_vicinae() {
     if is_fedora; then
-        sudo dnf copr enable quadratech188/vicinae
+        sudo dnf copr enable -y quadratech188/vicinae
         sudo dnf install -y vicinae
     else
         echo "Vicinae is only available on Fedora via COPR"
