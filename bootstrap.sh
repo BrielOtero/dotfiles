@@ -47,6 +47,13 @@ run_script "$SCRIPTS_DIR/npm.sh"
 # Symbolic linking
 mkdir -p "$HOME/.config"
 
+# Remove blocking directories only for packages we're stowing
+for pkg in git ghostty; do
+    if [ -d "$HOME/.config/$pkg" ] && [ ! -L "$HOME/.config/$pkg" ]; then
+        rm -rf "$HOME/.config/$pkg"
+    fi
+done
+
 stow -d ~/.dotfiles -t ~ --adopt zshrc
 stow -d ~/.dotfiles -t ~/.config --adopt config
 
