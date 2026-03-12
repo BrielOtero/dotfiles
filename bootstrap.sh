@@ -49,7 +49,6 @@ mkdir -p "$HOME/.config"
 
 stow -d ~/.dotfiles -t ~ --adopt zshrc
 stow -d ~/.dotfiles -t ~/.config --adopt config
-stow -d ~/.dotfiles -t ~/.config --adopt git
 
 # Set default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
