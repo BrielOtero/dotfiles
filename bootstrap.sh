@@ -47,13 +47,7 @@ mkdir -p "$HOME/.config"
 
 stow -d ~/.dotfiles -t ~ --adopt zshrc
 stow -d ~/.dotfiles -t ~/.config --adopt config
-
-mkdir -p "$HOME/.config/git"
-if is_macos; then
-    cp "$DOTFILES_DIR/config/gitconfig/macos/gitconfig" "$HOME/.config/git/config.macos"
-elif is_linux; then
-    cp "$DOTFILES_DIR/config/gitconfig/linux/gitconfig" "$HOME/.config/git/config.linux"
-fi
+stow -d ~/.dotfiles -t ~/.config --adopt git
 
 # Set default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
