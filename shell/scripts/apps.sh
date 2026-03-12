@@ -138,7 +138,7 @@ install_nvidia() {
 
     # Alternative: Install proprietary drivers
     sudo dnf install -y cuda-drivers
-    dnf install nvidia-driver kmod-nvidia-latest-dkms
+    sudo dnf install nvidia-driver kmod-nvidia-latest-dkms
 
     echo "NVIDIA drivers installed. Reboot required."
 }
