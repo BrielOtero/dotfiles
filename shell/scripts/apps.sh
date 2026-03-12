@@ -59,7 +59,7 @@ install_1password() {
     
     # Add Zen Browser if installed
     if command -v zen-browser &> /dev/null; then
-        echo "zen-browser" | sudo tee -a /etc/1password/custom_allowed_browsers
+        echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers
     elif command -v zen-bin &> /dev/null; then
         echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers
     fi
@@ -138,7 +138,7 @@ install_nvidia() {
 
     # Alternative: Install proprietary drivers
     sudo dnf install -y cuda-drivers
-    sudo dnf install nvidia-driver kmod-nvidia-latest-dkms
+    sudo dnf install -y nvidia-driver kmod-nvidia-latest-dkms
 
     echo "NVIDIA drivers installed. Reboot required."
 }
