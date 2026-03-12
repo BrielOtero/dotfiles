@@ -15,7 +15,7 @@ install_flatpak_apps() {
 
 install_zen_browser() {
     if is_fedora; then
-        sudo dnf copr enable sneexy/zen-browser
+        sudo dnf copr enable firminunderscore/zen-browser
         sudo dnf install -y zen-browser
     else
         echo "Zen Browser is only supported on Fedora/RHEL for now"
