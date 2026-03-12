@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+source "$DOTFILES_DIR/shell/functions/os.sh"
 
 install_shell() {
     local os=$(detect_os)
