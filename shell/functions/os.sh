@@ -51,6 +51,7 @@ install_deps() {
     local os=$(detect_os)
     case "$os" in
         fedora)
+            sudo dnf update -y
             sudo dnf install -y gcc gcc-c++ make git zsh stow flatpak
             curl -sS https://starship.rs/install.sh | sh
             ;;
