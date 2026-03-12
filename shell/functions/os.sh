@@ -52,15 +52,13 @@ install_deps() {
     case "$os" in
         fedora)
             sudo dnf install -y gcc gcc-c++ make git zsh stow flatpak
-            # Install starship viaCOPR
-            sudo dnf copr enable atim/starship
-            sudo dnf install -y starship
+            curl -sS https://starship.rs/install.sh | sh
             ;;
         debian)
             sudo apt-get update && sudo apt-get upgrade -y
             sudo apt install -y libz-dev libssl-dev liblzma-dev libcurl4-gnutls-dev libexpat1-dev gettext cmake gcc bc flatpak
             sudo apt-get install -y git zsh stow
-            curl -sS https://starship.dev/install.sh | sh -s -- -y
+            curl -sS https://starship.rs/install.sh | sh
             ;;
         macos)
             if ! command -v brew &> /dev/null; then
