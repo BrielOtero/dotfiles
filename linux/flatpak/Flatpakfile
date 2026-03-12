@@ -1,0 +1,24 @@
+# GUI Applications via Flatpak
+
+# Communication
+flathub com.discord.Discord
+
+# Browsers
+flathub com.brave.Browser
+
+# Productivity & System Tools
+flathub com.obsproject.Obsidian
+flathub org.videolan.VLC
+flathub com.google.GoogleDrive
+flathub io.missioncenter.MissionCenter
+
+
+# Database Tools
+flathub io.dbeaver.DBeaver
+flathub com.brunobrero.Bruno
+
+# Office & Media
+flathub org.libreoffice.LibreOffice
+
+# Terminal
+flathub com.mitchellh.ghostty

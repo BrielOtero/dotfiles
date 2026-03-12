@@ -1,15 +1,24 @@
 #!/bin/bash
-set -eu
+
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
 
 # Install pyenv
-if ! command -v $HOME/.pyenv/bin/pyenv &> /dev/null; then
+if [ ! -d "$HOME/.pyenv" ]; then
     git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+fi
 
+if command -v pyenv &> /dev/null; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    
     py_versions=("3.12" "3.13.6")
     for py_version in "${py_versions[@]}"; do
-        $HOME/.pyenv/bin/pyenv install "$py_version"
+        if ! pyenv versions | grep -q "$py_version"; then
+            CONFIGURE_OPTS=--disable-install-docular pyenv install -s "$py_version" 2>/dev/null || true
+        fi
     done
-
-    # Set the global Python version to the newest one.
-    $HOME/.pyenv/bin/pyenv global "${py_versions[-1]}"
+    
+    if pyenv versions | grep -q "3.13"; then
+        pyenv global 3.13.6
+    fi
 fi

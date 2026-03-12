@@ -1,0 +1,3 @@
+# Linux-specific gitconfig
+[gpg "ssh"]
+    program = /usr/bin/op-ssh-sign

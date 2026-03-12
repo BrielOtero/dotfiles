@@ -9,15 +9,7 @@ brew "fd"              # Fast, user-friendly alternative to find
 brew "fzf"             # Fuzzy finder, integrates well with shell tools
 brew "zoxide"          # Smart directory navigation tool
 brew "tree"            # Directory tree viewer
-brew "stow"            # Manage dotfiles with symlinks
 brew "eza"             # Modern, maintained replacement for ls
-
-brew "karabiner-elements" # Keybinder for macOS
-
-# Kubernetes tools
-#brew "kubectl"        # CLI for Kubernetes
-#brew "kubectx"        # Switch between Kubernetes contexts/namespaces easily
-#brew "k9s"            # TUI for managing Kubernetes clusters
 
 # Cloud & Development CLI
 brew "awscli"          # AWS command-line interface
@@ -47,7 +39,6 @@ cask "discord"         # Chat & community platform
 
 # Browsers
 cask "firefox"         # Mozilla Firefox
-cask "brave-browser"   # Privacy-focused Chromium browser
 
 # IDEs & Editors
 cask "visual-studio-code"   # VS Code editor
@@ -59,5 +50,4 @@ cask "mysqlworkbench"       # MySQL client and admin tool
 cask "dbeaver-community"    # Universal DB client
 cask "bruno"                # API client (Postman alternative)
 
-# Office & Media
-cask "libreoffice"     # Free MS Office alternative
+

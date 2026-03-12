@@ -1,0 +1,23 @@
+# Core CLI tools
+git
+gh
+stow
+lazygit
+neovim
+ripgrep
+fd-find
+fzf
+tree
+curl
+wget
+
+eza
+bat
+zoxide
+btop
+
+# Cloud & Development
+awscli2
+git-lfs
+gnu-tar
+git-flow
