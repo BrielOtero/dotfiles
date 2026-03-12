@@ -1,77 +1,9 @@
+# Starship config - using default theme with minimal overrides
+
 add_newline = false
 
-[character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold green)"
-
-[directory]
-truncation_length = 3
-truncate_to_repo = true
-style = "bold cyan"
-format = "[$path]($style)[$read_only]($read_only_style) "
-
-[git_branch]
-symbol = " "
-style = "bold purple"
-format = "on [$symbol$branch]($style) "
+[aws]
+disabled = true
 
 [git_status]
-style = "bold red"
-format = '([$all_status$ahead_behind] )'
-conflicted = "⚔️ "
-ahead = "⇧${count}"
-behind = "⇽${count}"
-diverged = "⇕⇧${ahead_count}⇽${behind_count}"
-untracked = "🤷"
-stashed = "📦"
-modified = "📝"
-staged = '[++\($count\)](green)'
-renamed = "👅"
-deleted = "🗑"
-
-[python]
-symbol = " "
-format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
-style = "yellow bold"
-pyenv_version = false
-pyenv_prefix = "pyenv "
-
-[nodejs]
-symbol = " "
-format = "via [$symbol($version )]($style)"
-style = "bold green"
-
-[rust]
-symbol = " "
-format = "via [$symbol($version )]($style)"
-style = "bold red"
-
-[aws]
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = "bold yellow"
-symbol = "☁️  "
-
-[docker_context]
-format = "via [$symbol$context]($style) "
-symbol = "🐳 "
-style = "blue bold"
-
-[package]
-symbol = "📦 "
-format = "is [$symbol$version]($style) "
-style = "208 bold"
-
-[time]
-disabled = false
-time_format = "%R"
-style = "bold dimmed blue"
-format = "[$time]($style) "
-
-[shell]
-bash_indicator = ""
-fish_indicator = ""
-zsh_indicator = ""
-
-[line_break]
-disabled = false
+disabled = true

@@ -12,4 +12,3 @@ else
 fi
 
 mkdir -p "$HOME/.config"
-cp "$DOTFILES_DIR/config/starship.toml" "$HOME/.config/starship.toml"
