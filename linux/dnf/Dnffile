@@ -2,7 +2,6 @@
 git
 gh
 stow
-lazygit
 neovim
 ripgrep
 fd-find
@@ -11,7 +10,6 @@ tree
 curl
 wget
 
-eza
 bat
 zoxide
 btop
@@ -20,6 +18,8 @@ btop
 awscli
 git-lfs
 tar
-git-flow
 docker
 docker-compose
+
+# Note: lazygit and eza installed via COPR
+# Note: git-flow installed via pip

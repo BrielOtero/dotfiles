@@ -32,8 +32,20 @@ install_packages() {
     case "$os" in
         fedora)
             sudo dnf update -y
+            
+            # Enable COPR repos for packages not in default repos
+            sudo dnf copr enable -y delen/lazygit 2>/dev/null || true
+            sudo dnf copr enable -y dturner/eza 2>/dev/null || true
+            
+            # Install packages from Dnffile
             xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/dnf/Dnffile" | grep -vE '^\s*$') \
                 sudo dnf install -y
+            
+            # Install gitflow via pip
+            if ! command -v gitflow &> /dev/null; then
+                sudo dnf install -y python3-pip
+                pip3 install --user gitflow-cli
+            fi
             ;;
         debian)
             sudo apt-get update && sudo apt-get upgrade -y
@@ -52,8 +64,9 @@ install_deps() {
     case "$os" in
         fedora)
             sudo dnf update -y
-            sudo dnf install -y gcc gcc-c++ make git zsh stow flatpak
-            curl -sS https://starship.rs/install.sh | sh
+            sudo dnf install -y gcc gcc-c++ make git zsh stow flatpak curl
+            sudo dnf copr enable -y atim/starship 2>/dev/null || true
+            sudo dnf install -y starship
             ;;
         debian)
             sudo apt-get update && sudo apt-get upgrade -y
