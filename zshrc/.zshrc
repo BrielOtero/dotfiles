@@ -42,6 +42,40 @@ alias cd='z'
 
 # USER ALIASES
 
+# Update packages based on OS
+update() {
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        echo "Updating macOS packages..."
+        brew update && brew upgrade
+    elif [[ "$(uname -s)" == "Linux" ]]; then
+        if command -v dnf &> /dev/null; then
+            echo "Updating Fedora packages..."
+            sudo dnf update -y
+        else
+            echo "Updating Debian/Ubuntu packages..."
+            sudo apt-get update && sudo apt-get upgrade -y
+        fi
+    fi
+    
+    # Update Flatpak if available
+    if command -v flatpak &> /dev/null; then
+        echo "Updating Flatpak packages..."
+        flatpak update -y
+    fi
+    
+    # Update pip if available
+    if command -v pip &> /dev/null; then
+        echo "Updating pip packages..."
+        pip install --upgrade pip 2>/dev/null || true
+    fi
+    
+    # Update npm global packages if available
+    if command -v npm &> /dev/null; then
+        echo "Updating npm global packages..."
+        npm update -g 2>/dev/null || true
+    fi
+}
+
 # Reload config
 alias reload='source ~/.zshrc'
 
