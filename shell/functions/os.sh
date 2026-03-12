@@ -34,8 +34,8 @@ install_packages() {
             sudo dnf update -y
             
             # Enable COPR repos for packages not in default repos
-            sudo dnf copr enable -y @delen/lazygit
-            sudo dnf copr enable -y @dturner/eza
+            sudo dnf copr enable -y dejan/lazygit
+            sudo dnf copr enable -y dturner/eza
             
             # Install packages from Dnffile
             xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/dnf/Dnffile" | grep -vE '^\s*$') \
