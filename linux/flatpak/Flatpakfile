@@ -1,18 +1,18 @@
 # GUI Applications via Flatpak
 
 # Communication
-com.discord.Discord
+com.discordapp.Discord
 
 # Productivity & System Tools
-com.obsproject.Obsidian
+md.obsidian.Obsidian
 org.videolan.VLC
 io.missioncenter.MissionCenter
 io.github.manosim.Gitify
 
 
 # Database Tools
-io.dbeaver.DBeaver
-com.brunobrero.Bruno
+io.dbeaver.DBeaverCommunity
+com.usebruno.Bruno
 
 # Office & Media
 org.libreoffice.LibreOffice
