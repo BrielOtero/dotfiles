@@ -126,7 +126,7 @@ install_nvidia() {
         return
     fi
  
-    if ! sudo dnf config-manager --add-repo "$repourl"; then
+    if ! sudo dnf config-manager addrepo --from-repofile"$repourl"; then
         echo "Failed to add NVIDIA CUDA repo. Skipping NVIDIA driver installation."
         return
     fi
