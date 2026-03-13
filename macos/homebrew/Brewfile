@@ -23,7 +23,7 @@ brew 'nvm'             # Node.js version manager
 cask "alt-tab"         # Windows-style Alt-Tab for macOS
 cask "breaktimer"      # Break reminder for healthy work habits
 cask "docker-desktop"  # Docker containers on macOS
-cask "ghostty@tip"     # GPU-accelerated terminal emulator
+cask "ghostty"     # GPU-accelerated terminal emulator
 cask "gitify"          # GitHub/GitLab notifications in menu bar
 cask "google-drive"    # Google Drive client
 cask "hiddenbar"       # Hide/show menu bar icons
