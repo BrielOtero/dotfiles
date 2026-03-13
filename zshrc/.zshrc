@@ -40,6 +40,11 @@ plugins=(git)
 eval "$(zoxide init zsh)"
 alias cd='z'
 
+# 1password
+# if [ -d "~/.1password/agent.sock" ]; then
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+# fi
+
 # USER ALIASES
 
 # Update packages based on OS
@@ -113,3 +118,10 @@ esac
 if [ -d "/opt/homebrew/opt/ffmpeg-full/bin" ]; then
     export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"
 fi
+
+# opencode
+if [ -d "/home/id/.opencode/bin:$PATH" ]; then
+    export PATH=/home/id/.opencode/bin:$PATH
+fi
+
+
