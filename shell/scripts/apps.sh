@@ -7,9 +7,9 @@ install_flatpak_apps() {
         return
     fi
 
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/flatpak/Flatpakfile" | grep -vE '^\s*$') \
-        flatpak install -y flathub
+        flatpak install --user -y flathub
 }
 
 
