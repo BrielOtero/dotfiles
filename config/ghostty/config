@@ -1,9 +1,13 @@
 mouse-hide-while-typing = true
 window-decoration = true
-macos-option-as-alt = true
-background-blur-radius = 20
+background-blur-radius = 80
 background-opacity = 0.8
 
-[linux]
-keybind = copy = ctrl+c
-keybind = paste = ctrl+v
+platform = macos {
+    macos-option-as-alt = true
+}
+
+platform = linux {
+    keybind = performable:ctrl+c=copy_to_clipboard
+    keybind = performable:ctrl+v=paste
+}
