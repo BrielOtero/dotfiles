@@ -57,13 +57,6 @@ done
 stow -d ~/.dotfiles -t ~ --adopt zshrc gitconfig
 stow -d ~/.dotfiles -t ~/.config --adopt config
 
-# Link platform-specific gitconfig
-if [ "$(uname)" = "Darwin" ]; then
-    ln -sf "$HOME/.config/git/macos/gitconfig" "$HOME/.config/git/gitconfig"
-else
-    ln -sf "$HOME/.config/git/linux/gitconfig" "$HOME/.config/git/gitconfig"
-fi
-
 # Set default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
     sudo chsh -s "$(which zsh)" $USER

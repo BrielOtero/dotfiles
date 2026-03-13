@@ -12,6 +12,15 @@
 [commit]
     gpgsign = true
 
-[include]
-    path = "/home/id/.config/git/gitconfig"
+[gpg]
+    format = ssh
+
+# Linux
+[includeIf "gitconfig:i/Have:Path:/opt/1Password/"]
+    path = "$HOME/.config/git/linux/gitconfig"
+
+# macOS
+[includeIf "gitconfig:i/Have:Path:/Applications/1Password.app/"]
+    path = "$HOME/.config/git/macos/gitconfig"
+
 
