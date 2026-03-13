@@ -91,7 +91,7 @@ install_vscode() {
 
 install_vicinae() {
     if is_fedora; then
-        sudo dnf copr enable -y quadratech188/vicinae
+        sudo dnf copr enable -y dulikiles/vicinae
         sudo dnf install -y vicinae
     else
         echo "Vicinae is only available on Fedora via COPR"

@@ -28,7 +28,7 @@ install_shell() {
     # Install Starship
     case "$os" in
         fedora)
-            sudo dnf copr enable -y @atim/starship 2>/dev/null || true
+            sudo dnf copr enable -y atim/starship
             sudo dnf install -y starship
             ;;
         debian)
