@@ -41,9 +41,11 @@ eval "$(zoxide init zsh)"
 alias cd='z'
 
 # 1password
-# if [ -d "~/.1password/agent.sock" ]; then
-export SSH_AUTH_SOCK=~/.1password/agent.sock
-# fi
+if [ -S "$HOME/.1password/agent.sock" ]; then
+    export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+elif [ -S "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ]; then
+    export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+fi
 
 # USER ALIASES
 
