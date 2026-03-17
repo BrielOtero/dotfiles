@@ -122,8 +122,7 @@ if [ -d "/opt/homebrew/opt/ffmpeg-full/bin" ]; then
 fi
 
 # opencode
-if [ -d "$HOME/.opencode/bin:$PATH" ]; then
+if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]]; then
     export PATH="$HOME/.opencode/bin:$PATH"
 fi
-
 
