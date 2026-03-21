@@ -5,7 +5,9 @@ detect_os() {
     if [[ "$(uname -s)" == "Darwin" ]]; then
         echo "macos"
     elif [[ "$(uname -s)" == "Linux" ]]; then
-        if [[ -f /etc/fedora-release ]] || command -v dnf &> /dev/null; then
+        if [[ -f /etc/arch-release ]] || grep -q "arch" /etc/os-release 2>/dev/null; then
+            echo "arch"
+        elif [[ -f /etc/fedora-release ]] || command -v dnf &> /dev/null; then
             echo "fedora"
         else
             echo "debian"
@@ -25,6 +27,10 @@ is_macos() {
 
 is_fedora() {
     is_linux && ([[ -f /etc/fedora-release ]] || command -v dnf &> /dev/null)
+}
+
+is_arch() {
+    is_linux && ([[ -f /etc/arch-release ]] || grep -q "arch" /etc/os-release 2>/dev/null)
 }
 
 install_nvidia() {
@@ -75,6 +81,15 @@ install_nvidia() {
 install_packages() {
     local os=$(detect_os)
     case "$os" in
+        arch)
+            sudo pacman -Syu --noconfirm
+            
+            xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Pacmanfile" | grep -vE '^\s*$') \
+                sudo pacman -S --noconfirm
+            
+            xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Aurfile" | grep -vE '^\s*$') \
+                paru -S --noconfirm
+            ;;
         fedora)
             sudo dnf update -y
             
@@ -110,6 +125,11 @@ install_packages() {
 install_deps() {
     local os=$(detect_os)
     case "$os" in
+        arch)
+            sudo pacman -Syu --noconfirm
+            sudo pacman -S --noconfirm base-devel git stow flatpak curl
+            cd /tmp && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si --noconfirm && cd /tmp && rm -rf paru
+            ;;
         fedora)
             sudo dnf update -y
             sudo dnf install -y gcc gcc-c++ make git stow flatpak curl
