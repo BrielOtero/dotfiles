@@ -87,8 +87,8 @@ install_packages() {
             xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Pacmanfile" | grep -vE '^\s*$') \
                 sudo pacman -S --noconfirm
             
-            xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Aurfile" | grep -vE '^\s*$') \
-                paru -S --noconfirm
+                xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Aurfile" | grep -vE '^\s*$') \
+                    paru -S --noconfirm
             ;;
         fedora)
             sudo dnf update -y
@@ -128,7 +128,9 @@ install_deps() {
         arch)
             sudo pacman -Syu --noconfirm
             sudo pacman -S --noconfirm base-devel git stow flatpak curl
-            cd /tmp && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si --noconfirm && cd /tmp && rm -rf paru
+            if ! command -v paru &> /dev/null; then
+                cd /tmp && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si --noconfirm && cd /tmp && rm -rf paru
+            fi
             ;;
         fedora)
             sudo dnf update -y
