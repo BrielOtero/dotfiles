@@ -1,3 +1,4 @@
 # AUR packages
 aws-cli-bin
-gh
+# github-cli is the same that gh
+github-cli
