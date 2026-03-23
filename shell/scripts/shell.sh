@@ -8,6 +8,9 @@ install_shell() {
     
     # Install Zsh
     case "$os" in
+        arch)
+            sudo pacman -S --noconfirm zsh
+            ;;
         fedora)
             sudo dnf install -y zsh
             ;;
@@ -22,11 +25,14 @@ install_shell() {
     # Install Oh My Zsh
     OH_MY_ZSH_DIR="$HOME/.oh-my-zsh"
     if [ ! -d "$OH_MY_ZSH_DIR" ]; then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     fi
     
     # Install Starship
     case "$os" in
+        arch)
+            sudo pacman -S --noconfirm starship
+            ;;
         fedora)
             sudo dnf copr enable -y atim/starship
             sudo dnf install -y starship
