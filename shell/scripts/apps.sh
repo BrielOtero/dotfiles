@@ -34,7 +34,7 @@ install_helium() {
         sudo dnf copr enable -y jhuang6451/helium-browser
         sudo dnf install -y helium-browser
     elif is_arch; then
-        paru -S --noconfirm helium-browser
+        paru -S --noconfirm helium-browser-bin
     else
         sudo apt-get install -y helium
     fi
