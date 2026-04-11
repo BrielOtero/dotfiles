@@ -1,0 +1,124 @@
+# AeroSpace config — COSMIC-desktop-style tiling
+# Docs: https://nikitabobko.github.io/AeroSpace/guide
+#
+# COSMIC uses Super (Cmd on macOS), but Cmd conflicts heavily with system
+# shortcuts, so this config uses Alt as the primary modifier with the same
+# *layout* of keybindings as COSMIC.
+
+start-at-login = true
+
+# Launch JankyBorders alongside AeroSpace so the focused window has a visible
+# colored border (AeroSpace itself draws no decorations).
+after-startup-command = [
+    'exec-and-forget /opt/homebrew/bin/borders style=round width=4.0 hidpi=on active_color=0xffffffff inactive_color=0xff45475a background_color=0x00000000'
+]
+
+# Auto-tile new windows (COSMIC's default behavior)
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# Don't hide AeroSpace-managed apps when focus changes
+automatically-unhide-macos-hidden-apps = true
+
+# Subtle gaps, COSMIC-ish
+[gaps]
+inner.horizontal = 6
+inner.vertical   = 6
+outer.left       = 6
+outer.bottom     = 6
+outer.top        = 6
+outer.right      = 6
+
+# ---------------------------------------------------------------------------
+# Main mode
+# ---------------------------------------------------------------------------
+[mode.main.binding]
+
+# --- Launchers ----------------------------------------------------------
+# COSMIC: Super+Enter opens a terminal
+alt-enter = '''exec-and-forget osascript -e '
+tell application "Terminal"
+    do script
+    activate
+end tell'
+'''
+
+# --- Window actions (COSMIC analogues) ----------------------------------
+alt-q = 'close'                          # Super+Q  close window
+alt-m = 'fullscreen'                     # Super+M  maximize toggle
+alt-g = 'layout floating tiling'         # Super+G  toggle floating
+alt-o = 'layout horizontal vertical'     # Super+O  toggle split orientation
+alt-y = 'layout tiles accordion'         # Super+Y  toggle tiling style
+
+# --- Focus (COSMIC: Super+Arrow) ----------------------------------------
+alt-left  = 'focus left'
+alt-down  = 'focus down'
+alt-up    = 'focus up'
+alt-right = 'focus right'
+# vim-style aliases
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# --- Move window (COSMIC: Super+Shift+Arrow) ----------------------------
+alt-shift-left  = 'move left'
+alt-shift-down  = 'move down'
+alt-shift-up    = 'move up'
+alt-shift-right = 'move right'
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# --- Workspaces (COSMIC: Super+1..9) ------------------------------------
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+
+# --- Move window to workspace (COSMIC: Super+Shift+1..9) ----------------
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+
+# --- Workspace navigation (COSMIC: Super+Ctrl+Arrow) --------------------
+alt-ctrl-left  = 'workspace --wrap-around prev'
+alt-ctrl-right = 'workspace --wrap-around next'
+alt-tab        = 'workspace-back-and-forth'
+
+# --- Multi-monitor ------------------------------------------------------
+alt-shift-ctrl-left  = 'move-workspace-to-monitor --wrap-around prev'
+alt-shift-ctrl-right = 'move-workspace-to-monitor --wrap-around next'
+
+# --- Resize mode (COSMIC has Super+R for resize) ------------------------
+alt-r = 'mode resize'
+
+# ---------------------------------------------------------------------------
+# Resize submode  (Esc / Enter to leave)
+# ---------------------------------------------------------------------------
+[mode.resize.binding]
+h     = 'resize width  -50'
+j     = 'resize height +50'
+k     = 'resize height -50'
+l     = 'resize width  +50'
+left  = 'resize width  -50'
+down  = 'resize height +50'
+up    = 'resize height -50'
+right = 'resize width  +50'
+enter = 'mode main'
+esc   = 'mode main'

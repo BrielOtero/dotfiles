@@ -19,6 +19,12 @@ brew "gnu-tar"         # GNU tar (better compatibility than BSD tar)
 brew "pyenv"           # Python version manager
 brew 'nvm'             # Node.js version manager
 
+# Window management (COSMIC-style tiling)
+tap  "nikitabobko/tap"
+cask "nikitabobko/tap/aerospace"   # i3-like tiling window manager for macOS
+tap  "felixkratz/formulae"
+brew "borders"                     # JankyBorders: focus indicator for AeroSpace
+
 # Productivity & System Tools
 cask "alt-tab"         # Windows-style Alt-Tab for macOS
 cask "breaktimer"      # Break reminder for healthy work habits

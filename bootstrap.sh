@@ -57,6 +57,16 @@ done
 stow -d ~/.dotfiles -t ~ --adopt zshrc gitconfig
 stow -d ~/.dotfiles -t ~/.config --adopt config
 
+# macOS-only configs (AeroSpace tiling WM + JankyBorders focus indicator)
+if is_macos; then
+    for pkg in aerospace borders; do
+        if [ -d "$HOME/.config/$pkg" ] && [ ! -L "$HOME/.config/$pkg" ]; then
+            rm -rf "$HOME/.config/$pkg"
+        fi
+    done
+    stow -d ~/.dotfiles/macos -t ~/.config --adopt config
+fi
+
 # Set default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
     sudo chsh -s "$(which zsh)" $USER

@@ -1,0 +1,14 @@
+#!/bin/bash
+# JankyBorders config — paired with AeroSpace
+# Docs: https://github.com/FelixKratz/JankyBorders
+
+options=(
+    style=round                  # rounded corners
+    width=4.0                    # border thickness in px
+    hidpi=on                     # crisp on Retina
+    active_color=0xffffffff      # focused window: white
+    inactive_color=0xff45475a    # unfocused window: muted gray
+    background_color=0x00000000  # transparent fill
+)
+
+borders "${options[@]}"
