@@ -45,7 +45,7 @@ install_ghostty() {
         sudo dnf copr enable -y scottames/ghostty
         sudo dnf install -y ghostty
     elif is_arch; then
-        sudo pacman -S --noconfirm ghostty
+        paru -S --noconfirm ghostty
     else
         echo "Ghostty is only available on Fedora and Arch-based distros"
     fi
@@ -59,23 +59,23 @@ install_1password() {
         sudo dnf install -y 1password 1password-cli
     elif is_arch; then
         curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-        paru -S --noconfirm 1password
+        paru -S --noconfirm 1password 1password-cli
     fi
 
     # Create Custom Allowed Browsers file for Zen and Helium
     sudo mkdir -p /etc/1password
-    sudo touch /etc/1password/custom_allowed_browsers
-    
+    sudo truncate -s 0 /etc/1password/custom_allowed_browsers
+
     # Add Zen Browser if installed
     if command -v zen-bin &> /dev/null; then
-        echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers
+        echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
     fi
-    
+
     # Add Helium Browser if installed
-    if command -v helium-browser &> /dev/null; then
-        echo "helium-browser" | sudo tee -a /etc/1password/custom_allowed_browsers
+    if command -v helium &> /dev/null; then
+        echo "helium" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
     fi
-    
+
     sudo chown root:root /etc/1password/custom_allowed_browsers
     sudo chmod 755 /etc/1password/custom_allowed_browsers
 }
@@ -87,7 +87,7 @@ install_vscode() {
         sudo dnf check-update
         sudo dnf install -y code
     elif is_arch; then
-        sudo pacman -S --noconfirm code
+        paru -S --noconfirm visual-studio-code-bin
     else
         curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
         echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list

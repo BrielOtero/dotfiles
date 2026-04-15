@@ -1,4 +1,4 @@
 #!/bin/bash
 set -eu
-# Install zoxide
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+# CLI tools are now installed via package managers (Pacmanfile, Dnffile, Aptfile, Brewfile)
+# This script is kept for any manual installs not available in repos

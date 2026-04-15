@@ -1,23 +1,26 @@
 # DOTFILES & ENV DETECTION
 export DOTFILES="$HOME/.dotfiles"
 
+export PATH="$HOME/.local/bin:$PATH"
+
+# Homebrew
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+elif [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+fi
+
 # STARSHIP
 export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-fi
-
-# PYENV
-export PYENV_ROOT="$HOME/.pyenv"
-if [ -d "$PYENV_ROOT" ]; then
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  command -v pyenv-virtualenv >/dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
 fi
 
 # DEFAULT EDITOR SELECTION
@@ -55,7 +58,10 @@ update() {
         echo "Updating macOS packages..."
         brew update && brew upgrade
     elif [[ "$(uname -s)" == "Linux" ]]; then
-        if command -v dnf &> /dev/null; then
+        if command -v paru &> /dev/null; then
+            echo "Updating Arch packages..."
+            paru -Syu --noconfirm
+        elif command -v dnf &> /dev/null; then
             echo "Updating Fedora packages..."
             sudo dnf update -y
         else
@@ -124,15 +130,6 @@ fi
 # opencode
 if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]]; then
     export PATH="$HOME/.opencode/bin:$PATH"
-fi
-
-export PATH="$HOME/.local/bin:$PATH"
-
-# Homebrew
-if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-elif [ -x /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 fi
 
 alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
