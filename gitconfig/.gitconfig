@@ -1,7 +1,6 @@
 [user]
     email = info.otero.gabriel@gmail.com
     name = Gabriel
-    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPrsIy/mXamzCPeLQEHL+h7kJBzUM7saG2DpdwzarYe1
 [init]
     defaultBranch = main
 [filter "lfs"]
@@ -15,12 +14,7 @@
 [gpg]
     format = ssh
 
-# Linux
-[includeIf "gitconfig:i/Have:Path:/opt/1Password/"]
-    path = "$HOME/.config/git/linux/gitconfig"
-
-# macOS
-[includeIf "gitconfig:i/Have:Path:/Applications/1Password.app/"]
-    path = "$HOME/.config/git/macos/gitconfig"
-
-
+# Platform-specific config (signingkey + gpg ssh program)
+# Symlinked by bootstrap.sh to the correct OS file
+[include]
+    path = ~/.config/git/platform/gitconfig

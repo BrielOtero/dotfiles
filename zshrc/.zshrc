@@ -126,3 +126,8 @@ if [ -d "$HOME/.opencode/bin" ] && [[ ":$PATH:" != *":$HOME/.opencode/bin:"* ]];
     export PATH="$HOME/.opencode/bin:$PATH"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work /home/id/.local/bin/claude'

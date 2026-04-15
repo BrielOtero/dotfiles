@@ -57,6 +57,14 @@ done
 stow -d ~/.dotfiles -t ~ --adopt zshrc gitconfig
 stow -d ~/.dotfiles -t ~/.config --adopt config
 
+# Platform-specific git config (signingkey + gpg ssh program)
+mkdir -p "$DOTFILES_DIR/config/git/platform"
+if is_macos; then
+    ln -sf ../macos/gitconfig "$DOTFILES_DIR/config/git/platform/gitconfig"
+else
+    ln -sf ../linux/gitconfig "$DOTFILES_DIR/config/git/platform/gitconfig"
+fi
+
 # macOS-only configs (AeroSpace tiling WM + JankyBorders focus indicator)
 if is_macos; then
     for pkg in aerospace borders; do
