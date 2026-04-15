@@ -28,3 +28,10 @@ ghostty
 zen-browser
 helium-browser
 vicinae
+gitify
+
+# GUI Applications (via external repos)
+google-chrome-stable
+zoom
+cloudflare-warp
+proton-vpn-gtk-app

@@ -17,5 +17,6 @@ com.usebruno.Bruno
 org.libreoffice.LibreOffice
 com.spotify.Client
 
-# Terminal
+# Communication
+com.github.IsmaelMartinez.teams_for_linux
 

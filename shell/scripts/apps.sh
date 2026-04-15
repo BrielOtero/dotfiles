@@ -50,7 +50,7 @@ install_vscode() {
     if is_fedora; then
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-        sudo dnf check-update
+        sudo dnf check-update || true
         sudo dnf install -y code
     else
         curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
@@ -60,10 +60,40 @@ install_vscode() {
     fi
 }
 
+install_external_repos() {
+    # Arch: all installed via Pacmanfile/AUR
+    if is_arch; then return; fi
+
+    if ! is_fedora; then return; fi
+
+    # Google Chrome
+    if [ ! -f /etc/yum.repos.d/google-chrome.repo ]; then
+        sudo dnf install -y fedora-workstation-repositories
+        sudo dnf config-manager setopt google-chrome.enabled=1 2>/dev/null || true
+    fi
+
+    # Zoom
+    if [ ! -f /etc/yum.repos.d/zoom.repo ]; then
+        sudo rpm --import https://zoom.us/linux/download/pubkey?version=5-12-6
+        sudo sh -c 'echo -e "[zoom]\nname=zoom\nbaseurl=https://zoom.us/linux/download/stable/\nenabled=1\ngpgcheck=1" > /etc/yum.repos.d/zoom.repo'
+    fi
+
+    # Cloudflare WARP
+    if [ ! -f /etc/yum.repos.d/cloudflare-warp.repo ]; then
+        curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo > /dev/null
+    fi
+
+    # Proton VPN
+    if ! rpm -q protonvpn-stable-release &>/dev/null; then
+        sudo dnf install -y https://repo.protonvpn.com/fedora-$(rpm -E %fedora)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.2-1.noarch.rpm
+    fi
+}
+
 install_linux_apps() {
     install_flatpak_apps
     install_1password
     install_vscode
+    install_external_repos
 
     echo ""
     echo "=============================================="
