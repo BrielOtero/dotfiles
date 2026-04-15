@@ -10,16 +10,14 @@ fzf
 tree
 curl
 wget
-
 eza
 bat
 zoxide
 btop
 
-# Cloud & Development
-awscli2
+# Development
+awscli
 git-lfs
-gnu-tar
 git-flow
 docker.io
 docker-compose

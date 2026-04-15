@@ -17,41 +17,6 @@ install_flatpak_apps() {
         md.obsidian.Obsidian
 }
 
-
-install_zen_browser() {
-    if is_fedora; then
-        sudo dnf copr enable -y firminunderscore/zen-browser
-        sudo dnf install -y zen-browser
-    elif is_arch; then
-        paru -S --noconfirm zen-browser-bin
-    else
-        echo "Zen Browser is only supported on Fedora/RHEL and Arch-based distros"
-    fi
-}
-
-install_helium() {
-    if is_fedora; then
-        sudo dnf copr enable -y jhuang6451/helium-browser
-        sudo dnf install -y helium-browser
-    elif is_arch; then
-        paru -S --noconfirm helium-browser-bin
-    else
-        sudo apt-get install -y helium
-    fi
-}
-
-install_ghostty() {
-    if is_fedora; then
-        sudo dnf copr enable -y scottames/ghostty
-        sudo dnf install -y ghostty
-    elif is_arch; then
-        paru -S --noconfirm ghostty
-    else
-        echo "Ghostty is only available on Fedora and Arch-based distros"
-    fi
-}
-
-
 install_1password() {
     if is_fedora; then
         sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
@@ -62,16 +27,14 @@ install_1password() {
         paru -S --noconfirm 1password 1password-cli
     fi
 
-    # Create Custom Allowed Browsers file for Zen and Helium
+    # Custom allowed browsers for 1Password integration
     sudo mkdir -p /etc/1password
     sudo truncate -s 0 /etc/1password/custom_allowed_browsers
 
-    # Add Zen Browser if installed
     if command -v zen-bin &> /dev/null; then
         echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
     fi
 
-    # Add Helium Browser if installed
     if command -v helium &> /dev/null; then
         echo "helium" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
     fi
@@ -81,13 +44,14 @@ install_1password() {
 }
 
 install_vscode() {
+    # Arch: installed via Pacmanfile (visual-studio-code-bin)
+    if is_arch; then return; fi
+
     if is_fedora; then
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
         sudo dnf check-update
         sudo dnf install -y code
-    elif is_arch; then
-        paru -S --noconfirm visual-studio-code-bin
     else
         curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
         echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
@@ -96,25 +60,10 @@ install_vscode() {
     fi
 }
 
-install_vicinae() {
-    if is_fedora; then
-        sudo dnf copr enable -y quadratech188/vicinae
-        sudo dnf install -y vicinae
-    elif is_arch; then
-        paru -S --noconfirm vicinae
-    else
-        echo "Vicinae is only available on Fedora via COPR or Arch-based distros"
-    fi
-}
-
 install_linux_apps() {
     install_flatpak_apps
-    install_zen_browser
-    install_helium
-    install_ghostty
     install_1password
     install_vscode
-    install_vicinae
 
     echo ""
     echo "=============================================="

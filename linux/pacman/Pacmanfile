@@ -9,14 +9,25 @@ fzf
 tree
 curl
 wget
-
 eza
 bat
 zoxide
 btop
+starship
 
-# Cloud & Development
+# Development
 git-lfs
 tar
 docker
 docker-compose
+
+# GUI Applications
+ghostty
+
+# AUR
+aws-cli-bin
+github-cli
+zen-browser-bin
+helium-browser-bin
+visual-studio-code-bin
+vicinae

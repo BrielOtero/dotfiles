@@ -9,17 +9,22 @@ fzf
 tree
 curl
 wget
-
 bat
 zoxide
 btop
+starship
 
-# Cloud & Development
+# Note: lazygit and eza installed via COPR
+
+# Development
 awscli
 git-lfs
 tar
 docker
 docker-compose
 
-# Note: lazygit and eza installed via COPR
-# Note: git-flow installed via pip
+# GUI Applications (via COPR)
+ghostty
+zen-browser
+helium-browser
+vicinae

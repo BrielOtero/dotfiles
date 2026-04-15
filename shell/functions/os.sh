@@ -86,26 +86,20 @@ install_packages() {
 
             xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Pacmanfile" | grep -vE '^\s*$') \
                 paru -S --noconfirm --needed
-
-            xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/pacman/Aurfile" | grep -vE '^\s*$') \
-                paru -S --noconfirm --needed
             ;;
         fedora)
             sudo dnf update -y
-            
-            # Enable COPR repos for packages not in default repos
-            sudo dnf copr enable -y dejan/lazygit
-            sudo dnf copr enable -y dturner/eza
-            
+
+            # Enable COPR repos
+            for copr in dejan/lazygit dturner/eza atim/starship \
+                        scottames/ghostty firminunderscore/zen-browser \
+                        jhuang6451/helium-browser quadratech188/vicinae; do
+                sudo dnf copr enable -y "$copr" 2>/dev/null || true
+            done
+
             # Install packages from Dnffile
             xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/dnf/Dnffile" | grep -vE '^\s*$') \
                 sudo dnf install -y
-            
-            # Install gitflow via pip
-            if ! command -v gitflow &> /dev/null; then
-                sudo dnf install -y python3-pip
-                pip3 install --user gitflow-cli
-            fi
 
             # Install NVIDIA drivers
             install_nvidia
