@@ -128,6 +128,11 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+# Homebrew
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+elif [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+fi
 
-alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work /home/id/.local/bin/claude'
+alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
