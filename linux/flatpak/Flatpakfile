@@ -2,12 +2,12 @@
 
 # Communication
 com.discordapp.Discord
+com.github.IsmaelMartinez.teams_for_linux
 
 # Productivity & System Tools
 md.obsidian.Obsidian
 org.videolan.VLC
 io.missioncenter.MissionCenter
-
 
 # Database Tools
 io.dbeaver.DBeaverCommunity
@@ -16,7 +16,3 @@ com.usebruno.Bruno
 # Office & Media
 org.libreoffice.LibreOffice
 com.spotify.Client
-
-# Communication
-com.github.IsmaelMartinez.teams_for_linux
-

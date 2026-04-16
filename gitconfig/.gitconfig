@@ -1,6 +1,8 @@
 [user]
     email = info.otero.gabriel@gmail.com
     name = Gabriel
+[core]
+    excludesFile = ~/.config/git/ignore
 [init]
     defaultBranch = main
 [filter "lfs"]
