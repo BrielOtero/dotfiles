@@ -31,10 +31,14 @@ install_1password() {
     sudo mkdir -p /etc/1password
     sudo truncate -s 0 /etc/1password/custom_allowed_browsers
 
+    # Zen Browser: zen-bin on Arch, zen-browser on Fedora
     if command -v zen-bin &> /dev/null; then
         echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
+    elif command -v zen-browser &> /dev/null; then
+        echo "zen-browser" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
     fi
 
+    # Helium Browser: helium on Fedora, helium on Arch
     if command -v helium &> /dev/null; then
         echo "helium" | sudo tee -a /etc/1password/custom_allowed_browsers > /dev/null
     fi
