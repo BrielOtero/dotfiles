@@ -61,9 +61,10 @@ log_success "Development tools installed"
 log_step "Linking dotfiles with stow"
 mkdir -p "$HOME/.config"
 
-# Remove blocking directories only for packages we're stowing
+# Remove blocking paths for packages we're stowing.
+# Includes absolute symlinks, which stow refuses to adopt.
 for pkg in git ghostty; do
-    if [ -d "$HOME/.config/$pkg" ] && [ ! -L "$HOME/.config/$pkg" ]; then
+    if [ -e "$HOME/.config/$pkg" ] || [ -L "$HOME/.config/$pkg" ]; then
         rm -rf "$HOME/.config/$pkg"
     fi
 done
@@ -82,7 +83,7 @@ fi
 # macOS-only configs (AeroSpace tiling WM + JankyBorders focus indicator)
 if is_macos; then
     for pkg in aerospace borders; do
-        if [ -d "$HOME/.config/$pkg" ] && [ ! -L "$HOME/.config/$pkg" ]; then
+        if [ -e "$HOME/.config/$pkg" ] || [ -L "$HOME/.config/$pkg" ]; then
             rm -rf "$HOME/.config/$pkg"
         fi
     done
