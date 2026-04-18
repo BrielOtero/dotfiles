@@ -32,10 +32,10 @@ fi
 
 # ZSH + OH-MY-ZSH SETUP
 export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
-ZSH_CUSTOM="$DOTFILES/zsh/themes"
 ZSH_THEME=""
 HYPHEN_INSENSITIVE="true"
-plugins=(git)
+# Note: zsh-syntax-highlighting MUST be the last plugin loaded
+plugins=(git sudo extract command-not-found zsh-autosuggestions zsh-syntax-highlighting)
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
 # CLI TOOLS
@@ -104,10 +104,15 @@ alias la="eza -la --icons --git"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias ltree="eza --tree --level=2  --icons --git"
 
-# FZF
+# FZF (provides Ctrl+T file search and Alt+C dir jump)
 if command -v fzf &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
     eval "$(fzf --zsh)"
+fi
+
+# Atuin (takes over Ctrl+R for shell history; keeps Up arrow native)
+if command -v atuin &> /dev/null; then
+    eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
 

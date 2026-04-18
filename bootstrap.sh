@@ -48,6 +48,7 @@ fi
 # Install shell
 log_step "Setting up shell (zsh + oh-my-zsh)"
 run_script "$SCRIPTS_DIR/shell.sh"
+run_script "$SCRIPTS_DIR/zsh-plugins.sh"
 log_success "Shell configured"
 
 # Terminal and development tools
