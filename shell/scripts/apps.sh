@@ -8,8 +8,13 @@ install_flatpak_apps() {
     fi
 
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/flatpak/Flatpakfile" | grep -vE '^\s*$') \
-        flatpak install --user -y flathub
+
+    # Drop apps without an aarch64 build on Flathub
+    app_list=$(grep -vE '^\s*#' "$DOTFILES_DIR/linux/flatpak/Flatpakfile" | grep -vE '^\s*$')
+    if is_arm; then
+        app_list=$(echo "$app_list" | grep -vxE 'com\.discordapp\.Discord|com\.usebruno\.Bruno|com\.spotify\.Client')
+    fi
+    echo "$app_list" | xargs flatpak install --user -y flathub
 
     flatpak override --user \
         --env=SSH_AUTH_SOCK='$SSH_AUTH_SOCK' \
