@@ -32,6 +32,13 @@ log_step "Installing base dependencies"
 install_deps
 log_success "Base dependencies installed"
 
+# Set up Linux external repos before package install so cloudflare-warp,
+# proton-vpn-gtk-app, etc. resolve from the Dnffile.
+if is_linux; then
+    source "$SCRIPTS_DIR/apps.sh"
+    install_external_repos
+fi
+
 # Install packages
 log_step "Installing packages"
 install_packages
@@ -40,7 +47,6 @@ log_success "Packages installed"
 # Install GUI applications (Linux only)
 if is_linux; then
     log_step "Installing Linux GUI applications"
-    source "$SCRIPTS_DIR/apps.sh"
     install_linux_apps
     log_success "GUI applications installed"
 fi

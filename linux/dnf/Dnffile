@@ -29,7 +29,8 @@ ghostty
 zen-browser
 helium-browser
 vicinae
-gitify
+
+# Note: gitify has no Fedora repo/COPR — installed from GitHub release in apps.sh
 
 # GUI Applications (via external repos)
 google-chrome-stable

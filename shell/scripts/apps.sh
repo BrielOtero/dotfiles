@@ -94,11 +94,26 @@ install_external_repos() {
     fi
 }
 
+install_gitify() {
+    # gitify has no Fedora repo/COPR and no aarch64 upstream RPM —
+    # download the latest x86_64 RPM directly from GitHub releases.
+    if ! is_fedora || is_arm; then return; fi
+    if rpm -q gitify &>/dev/null; then return; fi
+
+    rpm_url=$(curl -s https://api.github.com/repos/gitify-app/gitify/releases/latest \
+        | grep -oE '"browser_download_url": "[^"]+\.x86_64\.rpm"' \
+        | head -1 | sed 's/"browser_download_url": "//; s/"$//')
+    if [ -n "$rpm_url" ]; then
+        sudo dnf install -y "$rpm_url"
+    fi
+}
+
 install_linux_apps() {
     install_flatpak_apps
     install_1password
     install_vscode
     install_external_repos
+    install_gitify
 
     echo ""
     echo "=============================================="
