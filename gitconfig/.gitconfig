@@ -1,6 +1,6 @@
 [user]
     email = info.otero.gabriel@gmail.com
-    name = Gabriel
+	name = BrielOtero
 [core]
     excludesFile = ~/.config/git/ignore
 [init]
