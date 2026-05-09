@@ -53,22 +53,15 @@ alt-g = 'layout floating tiling'         # Super+G  toggle floating
 alt-o = 'layout horizontal vertical'     # Super+O  toggle split orientation
 alt-y = 'layout tiles accordion'         # Super+Y  toggle tiling style
 
-# --- Focus (COSMIC: Super+Arrow) ----------------------------------------
-alt-left  = 'focus left'
-alt-down  = 'focus down'
-alt-up    = 'focus up'
-alt-right = 'focus right'
-# vim-style aliases
+# --- Focus (vim-style; arrows left unbound so alt-arrows keep their
+#     macOS word-jump behavior in text fields) -------------------------
 alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
-# --- Move window (COSMIC: Super+Shift+Arrow) ----------------------------
-alt-shift-left  = 'move left'
-alt-shift-down  = 'move down'
-alt-shift-up    = 'move up'
-alt-shift-right = 'move right'
+# --- Move window (vim-style; alt-shift-arrows left unbound to preserve
+#     word-selection in text fields) -----------------------------------
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
