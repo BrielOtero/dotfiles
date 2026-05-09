@@ -70,16 +70,17 @@ install_external_repos() {
 
     if ! is_fedora; then return; fi
 
-    # Google Chrome
-    if [ ! -f /etc/yum.repos.d/google-chrome.repo ]; then
-        sudo dnf install -y fedora-workstation-repositories
-        sudo dnf config-manager setopt google-chrome.enabled=1 2>/dev/null || true
-    fi
+    # Google Chrome and Zoom are x86_64 only — skip on ARM
+    if ! is_arm; then
+        if [ ! -f /etc/yum.repos.d/google-chrome.repo ]; then
+            sudo dnf install -y fedora-workstation-repositories
+            sudo dnf config-manager setopt google-chrome.enabled=1 2>/dev/null || true
+        fi
 
-    # Zoom
-    if [ ! -f /etc/yum.repos.d/zoom.repo ]; then
-        sudo rpm --import https://zoom.us/linux/download/pubkey?version=5-12-6
-        sudo sh -c 'echo -e "[zoom]\nname=zoom\nbaseurl=https://zoom.us/linux/download/stable/\nenabled=1\ngpgcheck=1" > /etc/yum.repos.d/zoom.repo'
+        if [ ! -f /etc/yum.repos.d/zoom.repo ]; then
+            sudo rpm --import https://zoom.us/linux/download/pubkey?version=5-12-6
+            sudo sh -c 'echo -e "[zoom]\nname=zoom\nbaseurl=https://zoom.us/linux/download/stable/\nenabled=1\ngpgcheck=1" > /etc/yum.repos.d/zoom.repo'
+        fi
     fi
 
     # Cloudflare WARP
@@ -89,7 +90,7 @@ install_external_repos() {
 
     # Proton VPN
     if ! rpm -q protonvpn-stable-release &>/dev/null; then
-        sudo dnf install -y https://repo.protonvpn.com/fedora-$(rpm -E %fedora)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.2-1.noarch.rpm
+        sudo dnf install -y https://repo.protonvpn.com/fedora-$(rpm -E %fedora)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.3-1.noarch.rpm
     fi
 }
 

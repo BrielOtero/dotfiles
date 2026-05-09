@@ -33,6 +33,13 @@ is_arch() {
     is_linux && ([[ -f /etc/arch-release ]] || grep -q "arch" /etc/os-release 2>/dev/null)
 }
 
+is_arm() {
+    case "$(uname -m)" in
+        aarch64|arm64) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
 install_nvidia() {
     if ! is_fedora; then
         echo "NVIDIA drivers via this script are only supported on Fedora"
@@ -97,9 +104,15 @@ install_packages() {
                 sudo dnf copr enable -y "$copr" 2>/dev/null || true
             done
 
-            # Install packages from Dnffile
-            xargs -a <(grep -vE '^\s*#' "$DOTFILES_DIR/linux/dnf/Dnffile" | grep -vE '^\s*$') \
-                sudo dnf install -y
+            # Install packages from Dnffile (apply ARM substitutions: drop x86_64-only
+            # apps, rename zen-browser to its aarch64 COPR package name)
+            pkg_list=$(grep -vE '^\s*#' "$DOTFILES_DIR/linux/dnf/Dnffile" | grep -vE '^\s*$')
+            if is_arm; then
+                pkg_list=$(echo "$pkg_list" \
+                    | grep -vxE 'google-chrome-stable|zoom' \
+                    | sed 's/^zen-browser$/zen-browser-arm/')
+            fi
+            echo "$pkg_list" | xargs sudo dnf install -y
 
             # Install NVIDIA drivers
             install_nvidia
