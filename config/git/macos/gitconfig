@@ -1,5 +1,5 @@
 # macOS-specific gitconfig
 [user]
-    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPrsIy/mXamzCPeLQEHL+h7kJBzUM7saG2DpdwzarYe1
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtsekI7C9VlRylcnfiuNkyLjNWckxhMyj9lwcZzNFbY
 [gpg "ssh"]
     program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
